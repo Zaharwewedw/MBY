@@ -5,11 +5,12 @@ import com.example.Telegram_mby.model.Person;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.lang.ref.WeakReference;
+
 @SpringBootApplication
 public class TelegramMbyApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TelegramMbyApplication.class, args);
-		System.out.println(Consumer.postRest());
 	}
 }

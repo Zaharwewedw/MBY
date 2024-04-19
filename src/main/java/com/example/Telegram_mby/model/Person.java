@@ -18,27 +18,9 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    public static BuilderPerson builder() {
-//        return new BuilderPerson(new Person());
-//    }
-
-   /* public static class BuilderPerson {
-        Person person;
-
-        public BuilderPerson(Person person) {
-            this.person = person;
-        }
-        public BuilderPerson buildUsername(String username){
-            person.setUsername(username);
-            return this;
-        }
-        public BuilderPerson buildPassword(String password){
-            person.setPassword(password);
-            return this;
-        }
-
-        public Person build() {
-            return this.person;
-        }
-    }*/
+    public Person(Long id, Person person) {
+        this.id = id;
+        this.username = person.getUsername();
+        this.password = person.getPassword();
+    }
 }

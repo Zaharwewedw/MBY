@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Consumer {
+public final class Consumer {
     private static final RestTemplate restTemplate = new RestTemplate();
 
     private static final String urlGet = "https://reqres.in/api/users/2";
@@ -24,4 +24,5 @@ public class Consumer {
         HttpEntity<Map<String, String>> request = new HttpEntity<>(json);
         return restTemplate.postForObject(urlPost, request ,String.class);
     }
+
 }

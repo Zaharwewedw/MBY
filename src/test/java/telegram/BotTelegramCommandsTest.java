@@ -1,4 +1,4 @@
-package com.example.Telegram_mby.telegram;
+package telegram;
 
 import org.junit.jupiter.api.Test;
 

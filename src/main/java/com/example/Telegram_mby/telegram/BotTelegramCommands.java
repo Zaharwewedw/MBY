@@ -1,10 +1,13 @@
 package com.example.Telegram_mby.telegram;
 
+import com.example.Telegram_mby.Util.PersonValidator;
 import com.example.Telegram_mby.config.BotTelegramModel;
+import com.example.Telegram_mby.model.Person;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.BindingResult;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageText;
@@ -21,6 +24,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @Log4j
 public class BotTelegramCommands extends TelegramLongPollingBot {
+
+    private final PersonValidator personValidator;
 
     private final BotTelegramModel botTelegramModel;
     private byte aByte;

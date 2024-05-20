@@ -48,7 +48,17 @@
 		<dependency>
 			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>6.2.4.Final</version>
+			<version>8.0.1.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.12.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+			<version>2.5.0</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
 		<dependency>
@@ -78,11 +88,33 @@
 			<version>1.18.32</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>1.6.8</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.2.0</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger.core.v3</groupId>
+			<artifactId>swagger-annotations-jakarta</artifactId>
+			<version>2.2.7</version>
 		</dependency>
 	</dependencies>
 
@@ -98,6 +130,76 @@
 				<configuration>
 					<!-- force 7-bit default encoding to ensure that nothing depends on it -->
 					<argLine>-Dfile.encoding=ASCII</argLine>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.10</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>jcc-report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+
+					<execution>
+						<id>jacoco-check</id>
+						<goals>
+							<goal>check</goal>
+						</goals>
+						<phase>test</phase>
+						<configuration>
+							<rules>
+								<rule>
+									<!--                                    <element>BUNDLE</element>-->
+									<!--                                    <element>PACKAGE</element>-->
+									<!--                                    <element>SOURCEFILE</element>-->
+									<!--                                    <element>METHOD</element>-->
+									<element>CLASS</element>
+									<limits>
+										<limit>
+											<counter>INSTRUCTION</counter>
+											<!--                                            <counter>LINE</counter>-->
+											<!--                                            <counter>BRANCH</counter>-->
+											<!--                                            <counter>COMPLEXITY</counter>-->
+											<!--                                            <counter>METHOD</counter>-->
+											<!--                                            <counter>CLASS</counter>-->
+
+											<value>MISSEDRATIO</value>
+											<maximum>20%</maximum>
+											<!--                                            <value>MISSEDCOUNT</value>-->
+											<!--                                            <maximum>2</maximum>-->
+											<!--                                            <value>COVEREDRATIO</value>-->
+											<!--                                            <minimum>90%</minimum>-->
+											<!--                                            <value>COVEREDCOUNT</value>-->
+											<!--                                            <minimum>90</minimum>-->
+											<!--                                            <value>TOTALCOUNT</value>-->
+											<!--                                            <minimum>90</minimum>-->
+										</limit>
+									</limits>
+								</rule>
+							</rules>
+						</configuration>
+					</execution>
+
+				</executions>
+				<configuration>
+					<excludes>
+						<exclude>edu/javacourse/unit/dao/**</exclude>
+						<exclude>edu/javacourse/unit/domain/**</exclude>
+						<exclude>edu/javacourse/unit/dto/**</exclude>
+						<exclude>edu/javacourse/unit/rest/**</exclude>
+						<exclude>edu/javacourse/unit/systems/**</exclude>
+						<exclude>edu/javacourse/unit/**/CompanyManager.class</exclude>
+					</excludes>
 				</configuration>
 			</plugin>
 		</plugins>

@@ -12,4 +12,10 @@ public class StartViuController {
     public String start() {
         return "start";
     }
+
+    @RequestMapping("/lesson")
+    @GetMapping
+    public String lesson() {
+        return "lesson";
+    }
 }
